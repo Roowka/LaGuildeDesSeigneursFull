@@ -53,7 +53,7 @@ class CharacterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Character::class,
+            'data_class' => null, // C'est un array et non un Character
         ]);
     }
 }
