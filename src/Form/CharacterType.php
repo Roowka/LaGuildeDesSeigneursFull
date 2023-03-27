@@ -18,11 +18,33 @@ class CharacterType extends AbstractType
             ->add('name', TextType::class)
             ->add('kind', TextType::class)
             ->add('surname', TextType::class)
-            ->add('caste')
-            ->add('knowledge')
-            ->add('intelligence')
-            ->add('life')
-            ->add('image')
+            ->add('caste', TextType::class, array(
+                'required' => false,
+                'help' => 'Caste du Character',
+            ))
+            ->add('knowledge', TextType::class, array(
+                'required' => false,
+            ))
+            ->add('intelligence', IntegerType::class, array(
+                'required' => false,
+                'help' => 'Niveau d\'intelligence du Character (1-250)',
+                'attr' => array(
+                    'min' => 1,
+                    'max' => 250,
+                ),
+            ))
+            ->add('life', IntegerType::class, array(
+                'required' => false,
+                'label' => 'Niveau de vie',
+                'attr' => array(
+                    'min' => 1,
+                    'max' => 250,
+                    'placeholder' => 'Niveau de vie du Character (1-250)',
+                ),
+            ))
+            ->add('image', TextType::class, array(
+                'required' => false,
+            ))
             ->add('created')
             ->add('modified')
         ;
