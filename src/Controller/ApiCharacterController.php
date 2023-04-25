@@ -23,11 +23,12 @@ class ApiCharacterController extends AbstractController
 
         $response = $this->client->request(
             'GET',
-            $this->getParameter('app.api_url') . '/character',
+            $this->getParameter('app.api_url') . '/character/index',
             [
                 'auth_bearer' => $request->getSession()->get('token'), // Récupération du token
             ]
         );
+
 
         return $this->render('api-character/index.html.twig', [
             'characters' => $response->toArray(),
@@ -130,5 +131,26 @@ class ApiCharacterController extends AbstractController
         }
 
         return $this->redirectToRoute('api_character_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+   
+    #[
+        Route('/intelligence/{intelligenceValue}',
+        name: 'app_character_intelligence',
+        methods: ['GET','HEAD'])
+    ]
+    public function intelligenceDisplay(Request $request, int $intelligenceValue)
+    {
+        $response = $this->client->request(
+            'GET',
+            $this->getParameter('app.api_url') . '/character/intelligence/' . $intelligenceValue,
+            [
+                'auth_bearer' => $request->getSession()->get('token'), // Récupération du token
+            ]
+        );
+
+        return $this->render('api-character/index.html.twig', [
+            'characters' => $response->toArray(),
+        ]);
     }
 }

@@ -28,12 +28,14 @@ class ApiLoginController extends AbstractController {
                 ],
             ]
         );
+        //dd($response->getStatusCode());
         // Mise en session du token
         if(200 === $response->getStatusCode()) {
             $content = json_decode($response->getContent(), true);
             $request->getSession()->set('token', $content['token']);
             return $this->redirectToRoute('api_character_index', [], Response::HTTP_SEE_OTHER);
         }
+        
         return $this->render('api-login/index.html.twig');
     }
 }

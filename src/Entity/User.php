@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $modified = null;
-
+ 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Character::class)]
     private Collection $characters;
 
